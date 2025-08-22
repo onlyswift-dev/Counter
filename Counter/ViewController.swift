@@ -49,7 +49,7 @@ class ViewController: UIViewController {
     func increaseCount () {
         count += 1
         textField.text = String(count)
-        appendHistory("Значение изменено на + 1")
+        appendHistory("Значение изменено на +1")
         
     }
     func decreaseCount () {
