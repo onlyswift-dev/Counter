@@ -38,17 +38,13 @@ class ViewController: UIViewController {
         appendHistory("значение сброшено")
     }
     
-    
     @IBAction func actionPlusOne(_ sender: Any) {
         increaseCount()
     }
     
-    
     @IBAction func actionMinusOne(_ sender: Any) {
         decreaseCount()
     }
-    
-    
     
     func increaseCount () {
         count += 1
@@ -65,8 +61,6 @@ class ViewController: UIViewController {
             appendHistory("попытка уменьшить значение счётчика ниже 0")
         }
     }
-    
-    
     func appendHistory(_ text: String) {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
