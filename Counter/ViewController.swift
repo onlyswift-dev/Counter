@@ -8,16 +8,16 @@
 import UIKit
 
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
     
-    var count = 0
+    private var count = 0
     
-    @IBOutlet weak var textField: UILabel!
-    @IBOutlet weak var counterHistory: UITextView!
-    @IBOutlet weak var counterButton: UIButton!
-    @IBOutlet weak var counterPlusOne: UIButton!
-    @IBOutlet weak var counterMinusOne: UIButton!
-    @IBOutlet weak var reset: UIButton!
+    @IBOutlet private weak var textField: UILabel!
+    @IBOutlet private weak var counterHistory: UITextView!
+    @IBOutlet private weak var counterButton: UIButton!
+    @IBOutlet private weak var counterPlusOne: UIButton!
+    @IBOutlet private weak var counterMinusOne: UIButton!
+    @IBOutlet private weak var reset: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,31 +28,13 @@ class ViewController: UIViewController {
         counterHistory.isScrollEnabled = true
     }
     
-    @IBAction func actionCounterButton(_ sender: Any) {
-        increaseCount()
-    }
-    
-    @IBAction func actionReset(_ sender: Any) {
-        count = 0
-        textField.text = "0"
-        appendHistory("значение сброшено")
-    }
-    
-    @IBAction func actionPlusOne(_ sender: Any) {
-        increaseCount()
-    }
-    
-    @IBAction func actionMinusOne(_ sender: Any) {
-        decreaseCount()
-    }
-    
-    func increaseCount () {
+    private func increaseCount() {
         count += 1
         textField.text = String(count)
         appendHistory("Значение изменено на +1")
-        
     }
-    func decreaseCount () {
+    
+    private func decreaseCount() {
         if count > 0 {
             count -= 1
             textField.text = String(count)
@@ -61,7 +43,8 @@ class ViewController: UIViewController {
             appendHistory("попытка уменьшить значение счётчика ниже 0")
         }
     }
-    func appendHistory(_ text: String) {
+    
+    private func appendHistory(_ text: String) {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let timestamp = formatter.string(from: Date())
@@ -70,5 +53,23 @@ class ViewController: UIViewController {
             let range = NSMakeRange(self.counterHistory.text.count - 1, 0)
             self.counterHistory.scrollRangeToVisible(range)
         }
+    }
+    
+    @IBAction private func actionCounterButton(_ sender: Any) {
+        increaseCount()
+    }
+    
+    @IBAction private func actionReset(_ sender: Any) {
+        count = 0
+        textField.text = "0"
+        appendHistory("значение сброшено")
+    }
+    
+    @IBAction private func actionPlusOne(_ sender: Any) {
+        increaseCount()
+    }
+    
+    @IBAction private func actionMinusOne(_ sender: Any) {
+        decreaseCount()
     }
 }
